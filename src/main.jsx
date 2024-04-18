@@ -2,6 +2,49 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
+const skills = [
+  {
+    skill: "HTML & CSS",
+    level: "intermediate",
+    color: "#ff3377",
+  },
+  {
+    skill: "JavaScript",
+    level: "intermediate",
+    color: "#33ff77",
+  },
+  {
+    skill: "PHP",
+    level: "intermediate",
+    color: "#ff33ff",
+  },
+  {
+    skill: "MySQL",
+    level: "intermediate",
+    color: "#cc69ff",
+  },
+  {
+    skill: "Git & GitHub",
+    level: "intermediate",
+    color: "#10ff99",
+  },
+  {
+    skill: "NodeJS",
+    level: "advanced",
+    color: "#befa99",
+  },
+  {
+    skill: "ReactJS",
+    level: "advanced",
+    color: "#cafa00",
+  },
+  {
+    skill: "Laravel",
+    level: "advanced",
+    color: "#dada11",
+  },
+];
+
 function App() {
   return (
     <div>
@@ -39,38 +82,26 @@ function Intro() {
 function SkillList() {
   return (
     <div className="skill-list">
-      <Skill skill="HTML & CSS" rate="💪" color="#ff3377" />
-      <Skill skill="JavaScript" rate="💪" color="#33ff77" />
-      <Skill skill="PHP" rate="💪" color="#ff33ff" />
-      <Skill skill="MySQL" rate="💪" color="#cc69ff" />
-      <Skill skill="Git" rate="💪" color="#10ff99" />
-      <Skill
-        skill="NodeJS"
-        rate="
-👦"
-        color="#befa99"
-      />
-      <Skill
-        skill="ReactJS"
-        rate="
-👦"
-        color="#cafa00"
-      />
-      <Skill
-        skill="Laravel"
-        rate="
-👦"
-        color="#dada11"
-      />
+      {skills.map((skill) => (
+        <Skill
+          skill={skill.skill}
+          level={skill.level}
+          color={skill.color}
+          key={skill.skill}
+        />
+      ))}
     </div>
   );
 }
 
-function Skill(props) {
+function Skill({ skill, level, color }) {
   return (
-    <div className="skill" style={{ backgroundColor: props.color }}>
-      <span>{props.skill}</span>
-      <span>{props.rate}</span>
+    <div className="skill" style={{ backgroundColor: color }}>
+      <span>{skill}</span>
+      <span>
+        {level === "advanced" && "👦"}
+        {level === "intermediate" && "💪"}
+      </span>
     </div>
   );
 }
